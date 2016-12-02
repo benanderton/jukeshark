@@ -1,0 +1,28 @@
+web:
+  image: nginx:latest
+  ports:
+    - "80:80"
+  volumes:
+    - ./web/:/var/www/html
+    - ./docker/nginx/vhosts/:/etc/nginx/sites-enabled
+    - ./docker/nginx/nginx.conf/:/etc/nginx/nginx.conf
+  links:
+    - php
+php:
+  build: ./docker/php7
+  volumes:
+    - ./web/:/var/www/html
+  links:
+    - db
+db:
+  build: ./docker/postgres
+  ports:
+    - "5432:5432"
+  expose:
+    - "5432"
+  volumes:
+   - ./:/app
+  environment:
+   - POSTGRES_DB=jukeshark
+   - POSTGRES_USER=jukeshark
+   - POSTGRES_PASSWORD=jukeshark
