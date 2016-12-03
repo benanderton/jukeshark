@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure xml --with-libxml-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) xml \
     && docker-php-ext-install -j$(nproc) curl \
-    && docker-php-ext-install -j$(nproc) zip \ 
+    && docker-php-ext-install -j$(nproc) zip \
+    && docker-php-ext-install -j$(nproc) pdo_pgsql \
     && docker-php-ext-install -j$(nproc) pgsql
 
 RUN apt-get install -y postgresql-client
