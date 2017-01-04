@@ -13,6 +13,7 @@ php:
   build: ./docker/php7
   volumes:
     - ./web/:/var/www/html
+    - ./docker/php7/config/docker.ini:/usr/local/etc/php/conf.d/docker.ini
   links:
     - db
 db:
