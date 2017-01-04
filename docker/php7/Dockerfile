@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
         git \
         zip \
         unzip \
+        nodejs \
+        npm \
 
         
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
@@ -34,4 +36,6 @@ RUN apt-get install -y postgresql-client
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require "laravel/installer"
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
+ENV PATH="/root/.composer/vendor/bin:/usr/bin/nodejs:${PATH}"
+RUN npm install webpack -g
+RUN ln -s /usr/bin/nodejs /usr/bin/node
