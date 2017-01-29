@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from './Button';
+import Icon from './Icon';
 
 export default class TextBox extends Component {
 
@@ -35,8 +37,8 @@ export default class TextBox extends Component {
                 <input type="text" ref="messageTextBox" disabled={!this.state.isEditing}/>
                 {
                     this.state.isEditing
-                        ? <button onClick={this.update}>Update</button>
-                        : <button onClick={this.edit}>Edit</button>
+                        ? <Button onClick={this.update}><Icon icon="save" />Update</Button>
+                        : <Button onClick={this.edit}><Icon icon="mode_edit" />Edit</Button>
                 }
             </div>
         );

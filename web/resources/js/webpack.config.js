@@ -1,12 +1,13 @@
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
+require('es6-promise').polyfill();
 
 module.exports = {
 
     devtool: 'source-map',
 
-    entry: './client.js',
+    entry: ['./global.js', './client.js'],
 
     output: {
         path            : __dirname + '../../../public/js/build',
@@ -16,7 +17,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx', '.json']
+        extensions: ['', '.js', '.jsx', '.json'],
     },
 
     module: {
@@ -25,6 +26,19 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ["babel-loader"]
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css", "sass"]
+            },{
+                test: /\.css$/,
+                loaders: ["style", "css"]
+            },{
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader?limit=10000&mimetype=application/font-woff"
+            },{
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "file-loader"
             }
         ]
     },
