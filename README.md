@@ -11,3 +11,6 @@ Will flesh this out later. To get started;
 * cd to `web/resources/js`
  - Install front end dependencies `npm install`
  - Run Webpack `webpack`
+
+# Troubleshooting
+I had to recursively chmod to 777 my storage directory for some reason.
